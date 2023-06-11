@@ -38,6 +38,32 @@
 				"anonymous": false,
 				"inputs": [
 					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "message",
+						"type": "string"
+					}
+				],
+				"name": "LogErrorString",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "bytes",
+						"name": "data",
+						"type": "bytes"
+					}
+				],
+				"name": "LowLevelError",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
 						"indexed": true,
 						"internalType": "address",
 						"name": "previousOwner",
@@ -796,11 +822,11 @@
 			]
 		},
 		"CheesecakeHelper.sol": {
-			"keccak256": "0x3a3278ff80a9894a03fc6dfeb64a5e5508d2c5ef8d3e7baddde9dc715ed4129f",
+			"keccak256": "0x3edfdf38ebc42a78c558c1c38bac459a8e71d328600733d85f3b70625fadcfda",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://067344e3f64ef60399cae660318ee357ba03839c38ac3c9c527c782685c7648f",
-				"dweb:/ipfs/QmXWzEQepHLgRVTeamfeA7cUrvNorAMFVq9MzAaZUTAGQx"
+				"bzz-raw://3dff6d372c0e55c94c6b7ad544f62b22c898ecf892030d940b9c437bcfd7b8be",
+				"dweb:/ipfs/QmZtri7EGKmcDVJvxWwaaXsn21f39g1YEKVEFX6RXoXYX8"
 			]
 		},
 		"CheesecakeHelperStorage.sol": {

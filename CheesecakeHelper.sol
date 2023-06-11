@@ -21,6 +21,8 @@ import "./interfaces/IToucanContractRegistry.sol";
 contract CheescakeHelper is CheesecakeHelperStorage {
     using SafeERC20 for IERC20;
 
+    event LogErrorString(string message);
+    event LowLevelError(bytes data);
 
     constructor(
         string[] memory _eligibleTokenSymbols,
@@ -202,7 +204,13 @@ contract CheescakeHelper is CheesecakeHelperStorage {
 
             balances[msg.sender][_tco2s[i]] -= _amounts[i];
 
-            IToucanCarbonOffsets(_tco2s[i]).retire(_amounts[i]);
+            try IToucanCarbonOffsets(_tco2s[i]).retire(_amounts[i]) {
+                emit LogErrorString("retired tco2 with cheesecake. nice!");
+            } catch Error(string memory reason) {
+                emit LogErrorString(reason);
+            } catch (bytes memory reason) {
+                emit LowLevelError(reason);
+            }
 
             unchecked {
                 ++i;
