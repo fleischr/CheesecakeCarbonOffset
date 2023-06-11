@@ -215,11 +215,11 @@
 			]
 		},
 		"CheesecakeHelperStorage.sol": {
-			"keccak256": "0x618fe822b116fe08aa974cb22908ea5d38b5e6a10af34ca1ef2244a0bc158d1d",
+			"keccak256": "0x7c6c452b73ab170a9072ca3911d916d7ff9f28e1252d253ec230b40107aa937e",
 			"license": "GPL-3.0",
 			"urls": [
-				"bzz-raw://ab5671a4d226ba757094580d991988117662180c4bb8079f403ad0daff0f79d6",
-				"dweb:/ipfs/QmbosSEVvVuFH3JyGJQunxEtwHADFZTA7Y7ddqaLR7vEbj"
+				"bzz-raw://e4518ed83a8e63a6c5eebea301cf04aad857347e7dcb477e0a0e9d7211792048",
+				"dweb:/ipfs/Qmc1avzqsGZyeDdav1vi6mwtQg65xho1YcqwnvBkovW8Fr"
 			]
 		}
 	},

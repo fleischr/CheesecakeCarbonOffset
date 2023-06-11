@@ -1,0 +1,856 @@
+{
+	"compiler": {
+		"version": "0.8.18+commit.87f61d96"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "string[]",
+						"name": "_eligibleTokenSymbols",
+						"type": "string[]"
+					},
+					{
+						"internalType": "address[]",
+						"name": "_eligibleTokenAddresses",
+						"type": "address[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "uint8",
+						"name": "version",
+						"type": "uint8"
+					}
+				],
+				"name": "Initialized",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "previousOwner",
+						"type": "address"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "OwnershipTransferred",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "who",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address",
+						"name": "poolToken",
+						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"indexed": false,
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "Redeemed",
+				"type": "event"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "fallback"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_poolToken",
+						"type": "address"
+					}
+				],
+				"name": "autoOffsetExactInETH",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountToSwap",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_poolToken",
+						"type": "address"
+					}
+				],
+				"name": "autoOffsetExactInToken",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_poolToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountToOffset",
+						"type": "uint256"
+					}
+				],
+				"name": "autoOffsetExactOutETH",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_depositedToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_poolToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountToOffset",
+						"type": "uint256"
+					}
+				],
+				"name": "autoOffsetExactOutToken",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_poolToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amountToOffset",
+						"type": "uint256"
+					}
+				],
+				"name": "autoOffsetPoolToken",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "autoRedeem",
+				"outputs": [
+					{
+						"internalType": "address[]",
+						"name": "tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "amounts",
+						"type": "uint256[]"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address[]",
+						"name": "_tco2s",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "_amounts",
+						"type": "uint256[]"
+					}
+				],
+				"name": "autoRetire",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"name": "balances",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "_fromMaticAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					}
+				],
+				"name": "calculateExpectedPoolTokenForETH",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_toAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "calculateNeededETHAmount",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "contractRegistryAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_erc20Addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "deposit",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "",
+						"type": "string"
+					}
+				],
+				"name": "eligibleTokenAddresses",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "owner",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "renounceOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "sushiRouterAddress",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					}
+				],
+				"name": "swapExactInETH",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_fromAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					}
+				],
+				"name": "swapExactInToken",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_toAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "swapExactOutETH",
+				"outputs": [],
+				"stateMutability": "payable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_fromToken",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_toToken",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_toAmount",
+						"type": "uint256"
+					}
+				],
+				"name": "swapExactOutToken",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "newOwner",
+						"type": "address"
+					}
+				],
+				"name": "transferOwnership",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_erc20Addr",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "_amount",
+						"type": "uint256"
+					}
+				],
+				"name": "withdraw",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"stateMutability": "payable",
+				"type": "receive"
+			}
+		],
+		"devdoc": {
+			"events": {
+				"Initialized(uint8)": {
+					"details": "Triggered when the contract has been initialized or reinitialized."
+				},
+				"Redeemed(address,address,address[],uint256[])": {
+					"params": {
+						"amounts": "An array of the amounts of each TCO2 that were redeemed",
+						"poolToken": "The address of the Toucan pool token used in the redemption, for example, NCT or BCT",
+						"tco2s": "An array of the TCO2 addresses that were redeemed",
+						"who": "The sender of the transaction"
+					}
+				}
+			},
+			"kind": "dev",
+			"methods": {
+				"calculateExpectedPoolTokenForETH(uint256,address)": {
+					"params": {
+						"_fromMaticAmount": "The amount of MATIC to swap",
+						"_toToken": "The address of the pool token to swap for, for example, NCT or BCT"
+					},
+					"returns": {
+						"_0": "The expected amount of Pool token that can be acquired"
+					}
+				},
+				"calculateNeededETHAmount(address,uint256)": {
+					"params": {
+						"_toAmount": "The desired amount of pool token to receive",
+						"_toToken": "The address of the pool token to swap for, for example, NCT or BCT"
+					},
+					"returns": {
+						"_0": "amounts The amount of MATIC required in order to swap for the specified amount of the pool token"
+					}
+				},
+				"deposit(address,uint256)": {
+					"details": "Needs to be approved"
+				},
+				"owner()": {
+					"details": "Returns the address of the current owner."
+				},
+				"renounceOwnership()": {
+					"details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby disabling any functionality that is only available to the owner."
+				},
+				"swapExactInETH(address)": {
+					"params": {
+						"_toToken": "Token to swap for (will be held within contract)"
+					},
+					"returns": {
+						"_0": "Resulting amount of Toucan pool token that got acquired for the swapped MATIC."
+					}
+				},
+				"swapExactInToken(address,uint256,address)": {
+					"details": "Needs to be approved on the client side.",
+					"params": {
+						"_fromAmount": "The amount of ERC20 token to swap",
+						"_fromToken": "The ERC20 token to deposit and swap",
+						"_toToken": "The Toucan token to swap for (will be held within contract)"
+					},
+					"returns": {
+						"_0": "Resulting amount of Toucan pool token that got acquired for the swapped ERC20 tokens."
+					}
+				},
+				"swapExactOutETH(address,uint256)": {
+					"params": {
+						"_toAmount": "Amount of NCT / BCT wanted",
+						"_toToken": "Token to swap for (will be held within contract)"
+					}
+				},
+				"swapExactOutToken(address,address,uint256)": {
+					"details": "Needs to be approved on the client side",
+					"params": {
+						"_fromToken": "The ERC20 oken to deposit and swap",
+						"_toAmount": "The required amount of the Toucan pool token (NCT/BCT)",
+						"_toToken": "The token to swap for (will be held within contract)"
+					}
+				},
+				"transferOwnership(address)": {
+					"details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+				}
+			},
+			"title": "Cheesecake CO2 Offset Helpers",
+			"version": 1
+		},
+		"userdoc": {
+			"events": {
+				"Redeemed(address,address,address[],uint256[])": {
+					"notice": "Emitted upon successful redemption of TCO2 tokens from a Toucan pool token such as BCT or NCT."
+				}
+			},
+			"kind": "user",
+			"methods": {
+				"calculateExpectedPoolTokenForETH(uint256,address)": {
+					"notice": "Calculates the expected amount of Toucan Pool token that can be acquired by swapping the provided amount of MATIC."
+				},
+				"calculateNeededETHAmount(address,uint256)": {
+					"notice": "Return how much MATIC is required in order to swap for the desired amount of a Toucan pool token, for example, BCT or NCT."
+				},
+				"deposit(address,uint256)": {
+					"notice": "Allow users to deposit BCT / NCT."
+				},
+				"swapExactInETH(address)": {
+					"notice": "Swap MATIC for Toucan pool tokens (BCT/NCT) on SushiSwap. All provided MATIC will be swapped."
+				},
+				"swapExactInToken(address,uint256,address)": {
+					"notice": "Swap eligible ERC20 tokens for Toucan pool tokens (BCT/NCT) on SushiSwap. All provided ERC20 tokens will be swapped."
+				},
+				"swapExactOutETH(address,uint256)": {
+					"notice": "Swap MATIC for Toucan pool tokens (BCT/NCT) on SushiSwap. Remaining MATIC that was not consumed by the swap is returned."
+				},
+				"swapExactOutToken(address,address,uint256)": {
+					"notice": "Swap eligible ERC20 tokens for Toucan pool tokens (BCT/NCT) on SushiSwap"
+				},
+				"withdraw(address,uint256)": {
+					"notice": "Allow users to withdraw tokens they have deposited."
+				}
+			},
+			"notice": "Helper functions that test the carbon offsetting (retirement) process with fake Cheesecake Factory giftcards on the Celo testnet. Not for production use! Demo only!",
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"CheesecakeHelper.sol": "CheescakeHelper"
+		},
+		"evmVersion": "paris",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"@openzeppelin/contracts-upgradeable/access/OwnableUpgradeable.sol": {
+			"keccak256": "0x4075622496acc77fd6d4de4cc30a8577a744d5c75afad33fdeacf1704d6eda98",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://99c8cb3cd19a44bbfb6612605affb7d8b06cee1f6aa9362a37a8672b4f7eeaf8",
+				"dweb:/ipfs/QmasyxFDBUp7k5KFgfDWEzM8PYSKEq7GVznzMJ1VxVRF4B"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/proxy/utils/Initializable.sol": {
+			"keccak256": "0x89be10e757d242e9b18d5a32c9fbe2019f6d63052bbe46397a430a1d60d7f794",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://f103ee2e4aecd37aac6ceefe670709cdd7613dee25fa2d4d9feaf7fc0aaa155e",
+				"dweb:/ipfs/QmRiNZLoJk5k3HPMYGPGjZFd2ke1ZxjhJZkM45Ec9GH9hv"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol": {
+			"keccak256": "0x0e1f0f5f62f67a881cd1a9597acbc0a5e4071f3c2c10449a183b922ae7272e3f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://c25f742ff154998d19a669e2508c3597b363e123ce9144cd0fcf6521229f401f",
+				"dweb:/ipfs/QmQXRuFzStEWqeEPbhQU6cAg9PaSowxJVo4PDKyRod7dco"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/AddressUpgradeable.sol": {
+			"keccak256": "0x9c80f545915582e63fe206c6ce27cbe85a86fc10b9cd2a0e8c9488fb7c2ee422",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://310136ad60820af4177a11a61d77a3686faf5fca4942b600e08fc940db38396b",
+				"dweb:/ipfs/QmbCzMNSTL7Zi7M4UCSqBrkHtp4jjxUnGbkneCZKdR1qeq"
+			]
+		},
+		"@openzeppelin/contracts-upgradeable/utils/ContextUpgradeable.sol": {
+			"keccak256": "0x963ea7f0b48b032eef72fe3a7582edf78408d6f834115b9feadd673a4d5bd149",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://d6520943ea55fdf5f0bafb39ed909f64de17051bc954ff3e88c9e5621412c79c",
+				"dweb:/ipfs/QmWZ4rAKTQbNG2HxGs46AcTXShsVytKeLs7CUCdCSv5N7a"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/IERC20.sol": {
+			"keccak256": "0x287b55befed2961a7eabd7d7b1b2839cbca8a5b80ef8dcbb25ed3d4c2002c305",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bd39944e8fc06be6dbe2dd1d8449b5336e23c6a7ba3e8e9ae5ae0f37f35283f5",
+				"dweb:/ipfs/QmPV3FGYjVwvKSgAXKUN3r9T9GwniZz83CxBpM7vyj2G53"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/extensions/IERC20Permit.sol": {
+			"keccak256": "0xec63854014a5b4f2b3290ab9103a21bdf902a508d0f41a8573fea49e98bf571a",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://bc5b5dc12fbc4002f282eaa7a5f06d8310ed62c1c77c5770f6283e058454c39a",
+				"dweb:/ipfs/Qme9rE2wS3yBuyJq9GgbmzbsBQsW2M2sVFqYYLw7bosGrv"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol": {
+			"keccak256": "0x909d608c2db6eb165ca178c81289a07ed2e118e444d0025b2a85c97d0b44a4fa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://656cda26512ddd7373c2d5551c8fae759fc30f05b10f0fc2e738e9274199dbd4",
+				"dweb:/ipfs/QmTSArSzQRFbQmHgq7U1PZXnsDFhvDZhKVu9CzMG4yo6Lx"
+			]
+		},
+		"@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol": {
+			"keccak256": "0xa82b58eca1ee256be466e536706850163d2ec7821945abd6b4778cfb3bee37da",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://6e75cf83beb757b8855791088546b8337e9d4684e169400c20d44a515353b708",
+				"dweb:/ipfs/QmYvPafLfoquiDMEj7CKHtvbgHu7TJNPSVPSCjrtjV8HjV"
+			]
+		},
+		"@openzeppelin/contracts/utils/Address.sol": {
+			"keccak256": "0x006dd67219697fe68d7fbfdea512e7c4cb64a43565ed86171d67e844982da6fa",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://2455248c8ddd9cc6a7af76a13973cddf222072427e7b0e2a7d1aff345145e931",
+				"dweb:/ipfs/QmfYjnjRbWqYpuxurqveE6HtzsY1Xx323J428AKQgtBJZm"
+			]
+		},
+		"@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router01.sol": {
+			"keccak256": "0x8a3c5c449d4b7cd76513ed6995f4b86e4a86f222c770f8442f5fc128ce29b4d2",
+			"urls": [
+				"bzz-raw://1df63ca373dafae3bd0ee7fe70f890a1dc7c45ed869c01de68413e0e97ff9deb",
+				"dweb:/ipfs/QmefJgEYGUL8KX7kQKYTrDweF8GB7yjy3nw5Bmqzryg7PG"
+			]
+		},
+		"@uniswap/v2-periphery/contracts/interfaces/IUniswapV2Router02.sol": {
+			"keccak256": "0x744e30c133bd0f7ca9e7163433cf6d72f45c6bb1508c2c9c02f1a6db796ae59d",
+			"urls": [
+				"bzz-raw://9bf2f4454ad63d4cff03a0630e787d9e8a9deed80aec89682cd8ad6379d9ef8c",
+				"dweb:/ipfs/Qme51hQNR2wpax7ooUadhtqLtXm8ffeVVYyubLkTT4wMCG"
+			]
+		},
+		"CheesecakeHelper.sol": {
+			"keccak256": "0x3a3278ff80a9894a03fc6dfeb64a5e5508d2c5ef8d3e7baddde9dc715ed4129f",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://067344e3f64ef60399cae660318ee357ba03839c38ac3c9c527c782685c7648f",
+				"dweb:/ipfs/QmXWzEQepHLgRVTeamfeA7cUrvNorAMFVq9MzAaZUTAGQx"
+			]
+		},
+		"CheesecakeHelperStorage.sol": {
+			"keccak256": "0x7c6c452b73ab170a9072ca3911d916d7ff9f28e1252d253ec230b40107aa937e",
+			"license": "GPL-3.0",
+			"urls": [
+				"bzz-raw://e4518ed83a8e63a6c5eebea301cf04aad857347e7dcb477e0a0e9d7211792048",
+				"dweb:/ipfs/Qmc1avzqsGZyeDdav1vi6mwtQg65xho1YcqwnvBkovW8Fr"
+			]
+		},
+		"interfaces/IToucanCarbonOffsets.sol": {
+			"keccak256": "0xbbc92eabd5a13c00bd41de9fb3f3cef4d9b635871522675954118d4445a93d03",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://119f5148019e0f6136d20a65a06e59c3d6e0873a7ed93010393db6108a54b1eb",
+				"dweb:/ipfs/QmUpzG45GEqdEd3BQacGUz8UdckH5UfkJa9nN6Djhtjeov"
+			]
+		},
+		"interfaces/IToucanContractRegistry.sol": {
+			"keccak256": "0xc1fc5040fec6da6724f9cb4d0e8a362bdc8a13cfd23656c00b89abacf8888a2b",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://42fc465f80d22bd1f9e29404e6955ef2a45f48a4449276502bca1e609da62e97",
+				"dweb:/ipfs/QmU8j2fnF7gUEB5WSLTDUC2yWAsMFJn5teFyt5df9NzXLx"
+			]
+		},
+		"interfaces/IToucanPoolToken.sol": {
+			"keccak256": "0xbbc63555e09b749c6034392501e00c95ea0b357472afb73d665d719787e69a93",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f21315a2659ccd3b85cb0c42e6e547c4367651388609da99aba1232c4ddd371f",
+				"dweb:/ipfs/QmebjK1F5Jg1UZr3h1L3P53E9JxHzwAzNicHaDwdqeciYd"
+			]
+		},
+		"interfaces/types/CarbonProjectTypes.sol": {
+			"keccak256": "0x0e563aa0e89301d00a6dae1f30b692ac9aebcac9c89ccab9e25d1f6dc6a53924",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://f9cf4fb3022c32da4f54f0bfbd12411ebf4f01cd49d057479998af56b39bc3cf",
+				"dweb:/ipfs/QmbqwsSHjCCoKezsCakVRH81F55GFZq3tJHvkcGN5ZJy4n"
+			]
+		},
+		"interfaces/types/CarbonProjectVintageTypes.sol": {
+			"keccak256": "0x6ee78189bd3fd0fe7f9541e20e91b10768d7d78bb347e8e064e9875b12c75163",
+			"license": "UNLICENSED",
+			"urls": [
+				"bzz-raw://054644a555d99387be7b9578962b4d1324c50d6e7f3a56373c09831ccad18f8f",
+				"dweb:/ipfs/QmXzbgMjL5Yj5NMFQmNUDhsK92p4xh8rysX7zefP6hro9s"
+			]
+		}
+	},
+	"version": 1
+}

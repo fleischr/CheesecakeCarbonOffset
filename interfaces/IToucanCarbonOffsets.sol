@@ -8,8 +8,8 @@ pragma solidity ^0.8.0;
 import "@openzeppelin/contracts-upgradeable/token/ERC20/IERC20Upgradeable.sol";
 import "@openzeppelin/contracts/token/ERC721/IERC721Receiver.sol";
 
-import "../types/CarbonProjectTypes.sol";
-import "../types/CarbonProjectVintageTypes.sol";
+import "./types/CarbonProjectTypes.sol";
+import "./types/CarbonProjectVintageTypes.sol";
 
 interface IToucanCarbonOffsets is IERC20Upgradeable, IERC721Receiver {
     function getGlobalProjectVintageIdentifiers()

@@ -18,7 +18,7 @@ import "./interfaces/IToucanContractRegistry.sol";
  *
 */
 
-contract OffsetHelper is OffsetHelperStorage {
+contract CheescakeHelper is CheesecakeHelperStorage {
     using SafeERC20 for IERC20;
 
 
@@ -79,7 +79,7 @@ contract OffsetHelper is OffsetHelperStorage {
         if (_erc20Address == eligibleTokenAddresses["NCT"]) return true;
         if (_erc20Address == eligibleTokenAddresses["chUSD"]) return true;
         if (_erc20Address == eligibleTokenAddresses["chCO2"]) return true;
-        if (_erc20Address == eligibleTokenAddresses["CELO"]) return true;
+        if (_erc20Address == eligibleTokenAddresses["WCELO"]) return true;
         return false;
     }
 
@@ -239,6 +239,40 @@ contract OffsetHelper is OffsetHelperStorage {
         return IUniswapV2Router02(sushiRouterAddress);
     }
 
+    function calculateExactOutSwap(
+        address _fromToken,
+        address _toToken,
+        uint256 _toAmount)
+        internal view
+        returns (address[] memory path, uint256[] memory amounts)
+    {
+        path = generatePath(_fromToken, _toToken);
+        uint256 len = path.length;
+
+        amounts = routerSushi().getAmountsIn(_toAmount, path);
+
+        // sanity check arrays
+        require(len == amounts.length, "Arrays unequal");
+        require(_toAmount == amounts[len - 1], "Output amount mismatch");
+    }
+
+    function calculateExactInSwap(
+        address _fromToken,
+        uint256 _fromAmount,
+        address _toToken)
+        internal view
+        returns (address[] memory path, uint256[] memory amounts)
+    {
+        path = generatePath(_fromToken, _toToken);
+        uint256 len = path.length;
+
+        amounts = routerSushi().getAmountsOut(_fromAmount, path);
+
+        // sanity check arrays
+        require(len == amounts.length, "Arrays unequal");
+        require(_fromAmount == amounts[0], "Input amount mismatch");
+    }
+
     function generatePath(address _fromToken, address _toToken)
         internal
         view
@@ -255,6 +289,28 @@ contract OffsetHelper is OffsetHelperStorage {
             path[2] = _toToken;
             return path;
         }
+    }
+
+    /**
+     * @notice Allow users to withdraw tokens they have deposited.
+     */
+    function withdraw(address _erc20Addr, uint256 _amount) public {
+        require(
+            balances[msg.sender][_erc20Addr] >= _amount,
+            "Insufficient balance"
+        );
+
+        IERC20(_erc20Addr).safeTransfer(msg.sender, _amount);
+        balances[msg.sender][_erc20Addr] -= _amount;
+    }
+
+    /**
+     * @notice Allow users to deposit BCT / NCT.
+     * @dev Needs to be approved
+     */
+    function deposit(address _erc20Addr, uint256 _amount) public onlyRedeemable(_erc20Addr) {
+        IERC20(_erc20Addr).safeTransferFrom(msg.sender, address(this), _amount);
+        balances[msg.sender][_erc20Addr] += _amount;
     }
 
     /**
@@ -369,7 +425,7 @@ contract OffsetHelper is OffsetHelperStorage {
         onlyRedeemable(_toToken)
         returns (uint256)
     {
-        address fromToken = eligibleTokenAddresses["WMATIC"];
+        address fromToken = eligibleTokenAddresses["WCELO"];
         (, uint256[] memory amounts) =
             calculateExactOutSwap(fromToken, _toToken, _toAmount);
         return amounts[0];
@@ -388,7 +444,7 @@ contract OffsetHelper is OffsetHelperStorage {
         uint256 _fromMaticAmount,
         address _toToken
     ) public view onlyRedeemable(_toToken) returns (uint256) {
-        address fromToken = eligibleTokenAddresses["WMATIC"];
+        address fromToken = eligibleTokenAddresses["WCELO"];
         (, uint256[] memory amounts) =
             calculateExactInSwap(fromToken, _fromMaticAmount, _toToken);
         return amounts[amounts.length - 1];
@@ -402,7 +458,7 @@ contract OffsetHelper is OffsetHelperStorage {
      */
     function swapExactOutETH(address _toToken, uint256 _toAmount) public payable onlyRedeemable(_toToken) {
         // calculate path & amounts
-        address fromToken = eligibleTokenAddresses["WMATIC"];
+        address fromToken = eligibleTokenAddresses["WCELO"];
         address[] memory path = generatePath(fromToken, _toToken);
 
         // swap
@@ -434,7 +490,7 @@ contract OffsetHelper is OffsetHelperStorage {
     function swapExactInETH(address _toToken) public payable onlyRedeemable(_toToken) returns (uint256) {
         // calculate path & amounts
         uint256 fromAmount = msg.value;
-        address fromToken = eligibleTokenAddresses["WMATIC"];
+        address fromToken = eligibleTokenAddresses["WCELO"];
         address[] memory path = generatePath(fromToken, _toToken);
         uint256 len = path.length;
 
